@@ -46,7 +46,59 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text("Pedido Flash"),
           ),
-      ),
+          drawer: Drawer(
+            child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  Container(
+                    height: 180,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFFFF5A1F),
+                          Color(0xFFFFA53A),
+                        ],
+                      ),
+                    ),
+                    alignment: Alignment.bottomLeft,
+                    padding: const EdgeInsets.all(20),
+                    child: Text(
+                      "Menu Caixa",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(
+                            color: Colors.white,
+                         ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.add_shopping_cart),
+                    title: Text(
+                        "Novo Pedido",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.history_outlined),
+                    title: Text(
+                      "Histórico",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.settings),
+                    title: Text(
+                      "Configurações",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                ]
+            ),
+          ),
+      )
     );
   }
 }
