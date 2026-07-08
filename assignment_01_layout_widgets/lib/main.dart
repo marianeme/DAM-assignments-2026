@@ -6,6 +6,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: TextTheme(
           headlineSmall: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
           titleLarge: TextStyle(
             fontSize: 22,
@@ -33,72 +34,186 @@ class MyApp extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.normal,
           ),
-          bodyMedium: TextStyle(
-            fontSize: 14,
-          ),
           labelLarge: TextStyle(
             fontSize: 14,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text("Pedido Flash"),
+        appBar: AppBar(
+          title: const Text("Pedido Flash"),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                height: 180,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xFFFF5A1F),
+                      Color(0xFFFFA53A),
+                    ],
+                  ),
+                ),
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  "Menu Caixa",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.add_shopping_cart),
+                title: Text(
+                  "Novo Pedido",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: Colors.black87),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.history_outlined),
+                title: Text(
+                  "Histórico",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: Colors.black87),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: Text(
+                  "Configurações",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: Colors.black87),
+                ),
+              ),
+            ],
           ),
-          drawer: Drawer(
-            child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  Container(
-                    height: 180,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFFFF5A1F),
-                          Color(0xFFFFA53A),
-                        ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Cardápio Rápido",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(color: Colors.black87),
+              ),
+              const SizedBox(height: 16),
+              Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.local_pizza,
+                        color: Colors.deepOrange,
                       ),
-                    ),
-                    alignment: Alignment.bottomLeft,
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      "Menu Caixa",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(
-                            color: Colors.white,
-                         ),
-                    ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          "Pizza Calabresa",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.black54),
+                        ),
+                      ),
+                      Text(
+                        "R\$ 45,00",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.black54),
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    leading: Icon(Icons.add_shopping_cart),
-                    title: Text(
-                        "Novo Pedido",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.local_drink,
+                        color: Colors.deepOrange,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          "Chopp Artesanal",
+                          style: Theme.of(context).textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.black54),
+                        ),
+                      ),
+                      Text(
+                        "R\$ 12,00",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.black54),
+                      ),
+                    ],
                   ),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.history_outlined),
-                    title: Text(
-                      "Histórico",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.fastfood,
+                        color: Colors.deepOrange,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          "Hambúrguer Duplo",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.black54),
+                        ),
+                      ),
+                      Text(
+                        "R\$ 32,00",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.black54),
+                      ),
+                    ],
                   ),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text(
-                      "Configurações",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ),
-                ]
-            ),
+                ),
+              ),
+            ],
           ),
-      )
+        ),
+      ),
     );
   }
 }
