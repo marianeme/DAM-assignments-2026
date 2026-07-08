@@ -167,6 +167,25 @@ class MyApp extends StatelessWidget {
                               ?.copyWith(color: Colors.black54),
                         ),
                       ),
+                      Transform.rotate(
+                        angle: -0.15,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Text(
+                            "PROMO",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
                       Text(
                         "R\$ 12,00",
                         style: Theme.of(context)
@@ -179,34 +198,37 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Card(
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.fastfood,
-                        color: Colors.deepOrange,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          "Hambúrguer Duplo",
+              Opacity(
+                opacity: 0.4,
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.fastfood,
+                          color: Colors.deepOrange,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            "Hambúrguer Duplo (Esgotado)",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(color: Colors.black54),
+                          ),
+                        ),
+                        Text(
+                          "R\$ 32,00",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyLarge
+                              .labelLarge
                               ?.copyWith(color: Colors.black54),
                         ),
-                      ),
-                      Text(
-                        "R\$ 32,00",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.black54),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
