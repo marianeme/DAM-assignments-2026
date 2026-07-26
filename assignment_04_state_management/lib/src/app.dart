@@ -12,17 +12,19 @@ import 'features/order/order_list_page.dart';
 import 'features/product/product_form_page.dart';
 import 'features/product/product_list_page.dart';
 import 'features/category/category_list_page.dart';
+import 'features/settings/settings_viewmodel.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsViewModel>();
     return MultiProvider(
       providers: appProviders,
       child: MaterialApp(
         title: 'Vendas App',
-        themeMode: ThemeMode.light,
+        themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         theme: UiConfig.lightTheme,
         darkTheme: UiConfig.darkTheme,
         debugShowCheckedModeBanner: false,
