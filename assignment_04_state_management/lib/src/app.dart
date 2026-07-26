@@ -19,44 +19,53 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsViewModel>();
     return MultiProvider(
       providers: appProviders,
-      child: MaterialApp(
-        title: 'Vendas App',
-        themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        theme: UiConfig.lightTheme,
-        darkTheme: UiConfig.darkTheme,
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const HomePage(),
-          '/clients': (context) => const ClientListPage(),
-          '/clients/form': (context) => const ClientFormPage(),
-          '/products': (context) => const ProductListPage(),
-          '/products/form': (context) => const ProductFormPage(),
-          '/categories': (context) => const CategoryListPage(),
-          '/orders': (context) => const OrderListPage(),
-          '/orders/detail': (context) => const OrderDetailPage(),
-        },
-        onGenerateRoute: (settings) {
-          if (settings.name == '/cart') {
-            return PageRouteBuilder(
-              settings: settings,
-              pageBuilder: (context, animation, secondaryAnimation) => const CartPage(),
-              transitionDuration: const Duration(milliseconds: 300),
-              reverseTransitionDuration: const Duration(milliseconds: 250),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                final curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
-                return SlideTransition(
-                  position: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(curvedAnimation),
-                  child: child,
-                );
-              },
-            );
-          }
+      child: Builder(
+        builder: (childContext) {
+          final settings = childContext.watch<SettingsViewModel>();
 
-          return null;
+          return MaterialApp(
+            title: 'Vendas App',
+            themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            theme: UiConfig.lightTheme,
+            darkTheme: UiConfig.darkTheme,
+            debugShowCheckedModeBanner: false,
+            initialRoute: '/',
+            routes: {
+              '/': (context) => const HomePage(),
+              '/clients': (context) => const ClientListPage(),
+              '/clients/form': (context) => const ClientFormPage(),
+              '/products': (context) => const ProductListPage(),
+              '/products/form': (context) => const ProductFormPage(),
+              '/categories': (context) => const CategoryListPage(),
+              '/orders': (context) => const OrderListPage(),
+              '/orders/detail': (context) => const OrderDetailPage(),
+            },
+            onGenerateRoute: (settings) {
+              if (settings.name == '/cart') {
+                return PageRouteBuilder(
+                  settings: settings,
+                  pageBuilder: (context, animation,
+                      secondaryAnimation) => const CartPage(),
+                  transitionDuration: const Duration(milliseconds: 300),
+                  reverseTransitionDuration: const Duration(milliseconds: 250),
+                  transitionsBuilder: (context, animation, secondaryAnimation,
+                      child) {
+                    final curvedAnimation = CurvedAnimation(
+                        parent: animation, curve: Curves.easeOutCubic);
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                          begin: const Offset(0, 1), end: Offset.zero).animate(
+                          curvedAnimation),
+                      child: child,
+                    );
+                  },
+                );
+              }
+              return null;
+            },
+          );
         },
       ),
     );
