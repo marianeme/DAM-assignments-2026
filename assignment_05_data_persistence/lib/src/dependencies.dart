@@ -1,9 +1,5 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:vendas_app/src/data/datasources/local/category/category_memory_local_datasource.dart';
-import 'package:vendas_app/src/data/datasources/local/client/client_memory_local_datasource.dart';
-import 'package:vendas_app/src/data/datasources/local/order/order_memory_local_datasource.dart';
-import 'package:vendas_app/src/data/datasources/local/product/product_memory_local_datasource.dart';
 import 'package:vendas_app/src/data/repositories/category/category_repository_impl.dart';
 import 'package:vendas_app/src/data/repositories/client/client_repository_impl.dart';
 import 'package:vendas_app/src/data/repositories/order/order_repository_impl.dart';
@@ -14,13 +10,17 @@ import 'package:vendas_app/src/features/client/client_viewmodel.dart';
 import 'package:vendas_app/src/features/order/order_viewmodel.dart';
 import 'package:vendas_app/src/features/product/product_viewmodel.dart';
 import 'package:vendas_app/src/features/settings/settings_viewmodel.dart';
+import 'data/datasources/local/category/category_hive_local_datasource.dart';
+import 'data/datasources/local/client/client_hive_local_datasource.dart';
+import 'data/datasources/local/order/order_hive_local_datasource.dart';
+import 'data/datasources/local/product/product_hive_local_datasource.dart';
 
 List<SingleChildWidget> get appProviders {
   // Inicialização de DataSources
-  final clientDatasource = ClientMemoryLocalDatasource();
-  final productDatasource = ProductMemoryLocalDatasource();
-  final orderDatasource = OrderMemoryLocalDatasource();
-  final categoryDatasource = CategoryMemoryLocalDatasource();
+  final clientDatasource = ClientHiveLocalDatasource();
+  final productDatasource = ProductHiveLocalDatasource();
+  final orderDatasource = OrderHiveLocalDatasource();
+  final categoryDatasource = CategoryHiveLocalDatasource();
 
   // Inicialização de Repositories
   final clientRepository = ClientRepositoryImpl(clientDatasource);
